@@ -16,7 +16,7 @@
     <div class="top_bar">
         <div class="menu_btn"><i class="fa-solid fa-bars"></i> </div>
         <div class="tool_bar">
-            <div class="tool" id="pencil" >
+            <div class="tool tool_active" id="pencil">
                 <i class="fa-solid fa-pencil"></i>
             </div>
             <div class="tool" id="eraser">
@@ -45,16 +45,25 @@
         </div>
     </div>
     <div class="tool_accessories_panel" id="tool_accessories_panel">
-        <div>Stroke Width</div>
-        <div class="stroke_width_selector">
-            <input type="range" name="strokeWidth" id="" min="2" max="5" value="3">
+        <div id="pencil_accessories">
+            <div>Stroke Width</div>
+            <div class="stroke_width_selector">
+                <input type="range" name="strokeWidth" id="" min="2" max="5" value="3">
+            </div>
+            <br></br>
+            <div>Stroke Color</div>
+            <div class="stroke_color_selector">
+                <input type="color" name="strokeColor" id="">
+            </div>
+            <br></br>
         </div>
-        <br></br>
-        <div>Stroke Color</div>
-        <div class="stroke_color_selector">
-            <input type="color" name="strokeColor" id="">
+        <div id="eraser_accessories" class="hide_element">
+            <div>Eraser Width</div>
+            <div class="eraser_width_selector">
+                <input type="range" name="eraserWidth" id="" min="10" max="30" value="15">
+            </div>
+            <br></br>
         </div>
-        <br></br>
     </div>
 
     <canvas id="canvas"></canvas>

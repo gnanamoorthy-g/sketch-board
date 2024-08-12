@@ -5,7 +5,6 @@ let prevX = 0;
 let prevY = 0;
 let curX;
 let curY;
-let pressed = false;
 
 const canvas = document.getElementById("canvas");
 canvas.addEventListener("mousedown", () => (pressed = true));
@@ -16,6 +15,15 @@ const ctx = canvas.getContext("2d");
 
 const strokeWidInput = document.getElementsByName('strokeWidth')[0];
 const strokeColorInput = document.getElementsByName('strokeColor')[0];
+const eraserWidthInput = document.getElementsByName('eraserWidth')[0];
+
+strokeWidth = strokeWidInput.value;
+strokeColor = strokeColorInput.value;
+ctx.strokeStyle = strokeColor;
+ctx.lineWidth = strokeWidth;
+
+
+
 
 strokeWidInput.addEventListener('change',(e) => {
     let {value} = e.target;
@@ -29,17 +37,22 @@ strokeColorInput.addEventListener('change',(e) => {
     ctx.strokeStyle = strokeColor;
 });
 
-const draw = (beginNew = false) => {
-  ctx.beginPath();
-  ctx.lineWidth = strokeWidth;
-  ctx.strokeStyle = strokeColor;
-  if (beginNew) {
-    ctx.fillRect(curX, curY, 2, 2);
-  } else {
+eraserWidthInput.addEventListener('change',(e) => {
+    let {value} = e.target;
+    strokeWidth = value;
+    ctx.lineWidth = strokeWidth;
+});
+
+const stroke = () => {
     ctx.moveTo(prevX, prevY);
     ctx.lineTo(curX, curY);
     ctx.stroke();
-  }
+}
+
+const draw = (beginNew = false) => {
+  ctx.beginPath();
+  ctx.moveTo(prevX, prevY);
+  if(!beginNew) stroke();
   ctx.closePath();
 };
 

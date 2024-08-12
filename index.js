@@ -1,4 +1,4 @@
-let toolOnUse = null;
+let toolOnUse = 'pencil';
 const uploadedImages= [];
 const tools = ['pencil','eraser','downloader','uploader','notes','redo','undo'];
 
@@ -20,9 +20,26 @@ const onToolPick = (tool = null) => {
         if(toolElement.getAttribute('id') !== tool){
             toolElement.classList.remove('tool_active')
         }
-    })
-    const toolOnUseElement = document.getElementById('tool_on_use');
-    toolOnUseElement.innerText = toolOnUse;
+    });
+    const accessoriesPanel = document.getElementById('tool_accessories_panel');
+    accessoriesPanel.classList.remove('hide_element');
+    const pencilAccessoriesElement = document.getElementById('pencil_accessories');
+    const eraserAccessoriesElement = document.getElementById('eraser_accessories');
+    if(toolOnUse === 'eraser'){
+        pencilAccessoriesElement.classList.add('hide_element');
+        eraserAccessoriesElement.classList.remove('hide_element');
+        ctx.strokeStyle = '#ffffff';
+        strokeWidth = eraserWidthInput.value;
+        ctx.lineWidth = strokeWidth;
+    };
+    if(toolOnUse === 'pencil'){
+        eraserAccessoriesElement.classList.add('hide_element');
+        pencilAccessoriesElement.classList.remove('hide_element');
+        ctx.strokeStyle = strokeColor;
+        strokeWidth = strokeWidInput.value;
+        ctx.lineWidth = strokeWidth;
+    }
+
 }
 
 tools.forEach((tool,index) => {
@@ -42,11 +59,6 @@ uploader.addEventListener('click',()=>{
         uploadedImages.push(imgUrl);
     });
     input.click();
-})
-
-const toolOnUseElement = document.createElement('div');
-toolOnUseElement.id = 'tool_on_use';
-toolOnUseElement.appendChild(document.createTextNode(toolOnUse));
+});
 
 const accessoriesPanel = document.getElementById('tool_accessories_panel');
-accessoriesPanel.appendChild(toolOnUseElement);
