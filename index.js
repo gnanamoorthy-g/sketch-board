@@ -25,12 +25,14 @@ const onToolPick = (tool = null) => {
     accessoriesPanel.classList.remove('hide_element');
     const pencilAccessoriesElement = document.getElementById('pencil_accessories');
     const eraserAccessoriesElement = document.getElementById('eraser_accessories');
+    canvas.classList.remove('eraser_cursor');
     if(toolOnUse === 'eraser'){
         pencilAccessoriesElement.classList.add('hide_element');
         eraserAccessoriesElement.classList.remove('hide_element');
         ctx.strokeStyle = '#ffffff';
         strokeWidth = eraserWidthInput.value;
         ctx.lineWidth = strokeWidth;
+        canvas.classList.add('eraser_cursor');
     };
     if(toolOnUse === 'pencil'){
         eraserAccessoriesElement.classList.add('hide_element');
