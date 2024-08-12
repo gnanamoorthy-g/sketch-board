@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles.css">
     <title>Sketch Board</title>
 </head>
+
 <body>
     <div class="top_bar">
         <div class="menu_btn"><i class="fa-solid fa-bars"></i> </div>
         <div class="tool_bar">
-            <div class="tool">
+            <div class="tool" id="pencil" >
                 <i class="fa-solid fa-pencil"></i>
             </div>
-            <div class="tool">
+            <div class="tool" id="eraser">
                 <i class="fa-solid fa-eraser"></i>
             </div>
-            <div class="tool">
+            <div class="tool" id="downloader">
                 <i class="fa-solid fa-download"></i>
             </div>
-            <div class="tool">
+            <div class="tool" id="uploader">
                 <i class="fa-solid fa-upload"></i>
             </div>
-            <div class="tool">
+            <div class="tool" id="notes">
+                <i class="far fa-sticky-note"></i>
+            </div>
+            <div class="tool" id="redo">
                 <i class="fa-solid fa-rotate-right"></i>
             </div>
-            <div class="tool">
+            <div class="tool" id="undo">
                 <i class="fa-solid fa-rotate-left"></i>
             </div>
         </div>
@@ -37,6 +44,22 @@
             </div>
         </div>
     </div>
+    <div class="tool_accessories_panel" id="tool_accessories_panel">
+        <div>Stroke Width</div>
+        <div class="stroke_width_selector">
+            <input type="range" name="strokeWidth" id="" min="2" max="5" value="3">
+        </div>
+        <br></br>
+        <div>Stroke Color</div>
+        <div class="stroke_color_selector">
+            <input type="color" name="strokeColor" id="">
+        </div>
+        <br></br>
+    </div>
+
+    <canvas id="canvas"></canvas>
+    <script src="./canvas.js"></script>
     <script src="./index.js"></script>
 </body>
+
 </html>
