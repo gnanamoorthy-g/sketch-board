@@ -87,5 +87,5 @@
 }
 
 .eraser_cursor{
-    cursor: url(public/eraser.png), auto;
+    cursor: url(../img/eraser.png), auto;
 }
