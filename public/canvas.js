@@ -12,7 +12,6 @@ canvas.addEventListener("mouseup", () => (pressed = false));
 canvas.setAttribute('width',window.innerWidth - 20);
 canvas.setAttribute('height',window.innerHeight - 20);
 const ctx = canvas.getContext("2d");
-
 const strokeWidInput = document.getElementsByName('strokeWidth')[0];
 const strokeColorInput = document.getElementsByName('strokeColor')[0];
 const eraserWidthInput = document.getElementsByName('eraserWidth')[0];
@@ -21,9 +20,6 @@ strokeWidth = strokeWidInput.value;
 strokeColor = strokeColorInput.value;
 ctx.strokeStyle = strokeColor;
 ctx.lineWidth = strokeWidth;
-
-
-
 
 strokeWidInput.addEventListener('change',(e) => {
     let {value} = e.target;
@@ -86,6 +82,8 @@ canvas.addEventListener("mousedown", (e) => {
 
 canvas.addEventListener("mouseup", (e) => {
     stopDrawingProcess();
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    actionsPerformed.push(imageData);
 });
 
 canvas.addEventListener("mouseout", (e) => {

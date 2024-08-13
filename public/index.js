@@ -2,12 +2,16 @@ let toolOnUse = 'pencil';
 const uploadedImages= [];
 const tools = ['pencil','eraser','downloader','uploader','notes','redo','undo'];
 
+const actionsPerformed = [];
+const tracker = 0;
+const unDoneActions = [];
+
 const pencil = document.getElementById('pencil');
 const eraser = document.getElementById('eraser');
 const downloader = document.getElementById('downloader');
 const uploader = document.getElementById('uploader');
 const notes = document.getElementById('notes');
-const redo = document.getElementById('undo');
+const redo = document.getElementById('redo');
 const undo = document.getElementById('undo');
 
 const onToolPick = (tool = null) => {
@@ -51,6 +55,13 @@ tools.forEach((tool,index) => {
     }
 });
 
+downloader.addEventListener('click',() =>{
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL();
+    a.download = 'board.jpg'
+    a.click();
+});
+
 uploader.addEventListener('click',()=>{
     const input = document.createElement('input');
     input.setAttribute('type','file');
@@ -61,6 +72,25 @@ uploader.addEventListener('click',()=>{
         uploadedImages.push(imgUrl);
     });
     input.click();
+});
+
+undo.addEventListener('click',() => {
+    if(!actionsPerformed.length) return;
+    let undone = actionsPerformed.pop();
+    unDoneActions.push(undone);
+    let curPos  = actionsPerformed.length -1;
+    if(curPos < 0){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        return;
+    }
+    ctx.putImageData(actionsPerformed[curPos],0,0);
+});
+
+redo.addEventListener('click',() =>{
+    if(!unDoneActions.length) return;
+    let toBeRedone = unDoneActions.pop();
+    actionsPerformed.push(toBeRedone);
+    ctx.putImageData(toBeRedone,0,0);
 });
 
 const accessoriesPanel = document.getElementById('tool_accessories_panel');
